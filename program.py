@@ -23,8 +23,9 @@ def print_header():
 def get_or_create_output_folder():
     base_folder = os.path.dirname(__file__)
     folder = 'cat_pictures'
+    print("BF: " + base_folder)
     full_path = os.path.join(base_folder, folder)
-
+    print("FP: " + full_path)
     if not os.path.exists(full_path) or not os.path.isdir(full_path):
         print('Creating new directory at {}'.format(full_path))
         os.mkdir(full_path)
@@ -49,8 +50,11 @@ def display_cats(folder):
         subprocess.call(['open', folder])
 
     elif platform.system() == 'Windows':
-        subprocess.call(['explorer', '"'+folder+'"'])
+        subprocess.call(['explorer', folder])
 
+        # below shows that explorer can open the path if it is correct
+        # but we don't hard code such things if we can avoid them
+        #subprocess.call(['explorer', "C:\\Users\\epalmer\\PycharmProjects\\jp_10\\learning_projects\\cat_pictures"])
     elif platform.system() == 'Linux':
         subprocess.call(['xdg-open', folder])
 
